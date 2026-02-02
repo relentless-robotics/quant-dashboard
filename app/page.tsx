@@ -55,10 +55,10 @@ export default function OverviewPage() {
 
   if (data.loading) {
     return (
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
         <Sidebar currentPage="Overview" />
         <div className="flex items-center justify-center h-screen">
-          <div className="text-xl text-gray-600">Loading...</div>
+          <div className="text-2xl text-white font-semibold animate-pulse">Loading data...</div>
         </div>
       </div>
     );
@@ -66,10 +66,12 @@ export default function OverviewPage() {
 
   if (data.error) {
     return (
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
         <Sidebar currentPage="Overview" />
         <div className="flex items-center justify-center h-screen">
-          <div className="text-xl text-red-600">Error: {data.error}</div>
+          <div className="bg-red-500/20 backdrop-blur-sm border border-red-500/50 rounded-xl p-6">
+            <div className="text-xl text-red-400">Error: {data.error}</div>
+          </div>
         </div>
       </div>
     );
@@ -94,11 +96,11 @@ export default function OverviewPage() {
     .sort((a, b) => a.date.localeCompare(b.date));
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
       <Sidebar currentPage="Overview" />
 
       <main className="pl-4 pr-4 pt-20 pb-8 max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+        <h1 className="text-4xl font-bold text-white mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
           Quant Trading Overview
         </h1>
 
@@ -154,15 +156,15 @@ export default function OverviewPage() {
         <PerformanceTable runs={runs} />
 
         {/* System Breakdown */}
-        <div className="mt-8 bg-white rounded-lg p-6 shadow-sm">
-          <h3 className="text-lg font-semibold mb-4">System Breakdown</h3>
+        <div className="mt-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 shadow-lg">
+          <h3 className="text-xl font-semibold text-white mb-4">System Breakdown</h3>
           <div className="space-y-2">
             {['Swing', 'Quanttime', 'MacroStrategy'].map(system => {
               const systemRuns = runs.filter(r => r.system === system);
               return (
-                <div key={system} className="flex justify-between items-center py-2 border-b">
-                  <span className="font-medium">{system}</span>
-                  <span className="text-gray-600">{systemRuns.length} runs</span>
+                <div key={system} className="flex justify-between items-center py-3 border-b border-gray-700/30">
+                  <span className="font-medium text-gray-200">{system}</span>
+                  <span className="text-purple-400 font-semibold">{systemRuns.length} runs</span>
                 </div>
               );
             })}

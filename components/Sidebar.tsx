@@ -25,7 +25,7 @@ export default function Sidebar({ currentPage }: SidebarProps) {
       {/* Hamburger Button */}
       <button
         onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors"
+        className="fixed top-4 left-4 z-50 p-2 bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg backdrop-blur-sm"
         aria-label="Toggle menu"
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -33,12 +33,12 @@ export default function Sidebar({ currentPage }: SidebarProps) {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-900 text-white transform transition-transform duration-300 ease-in-out z-40 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-gray-900 to-gray-950 border-r border-gray-800 text-white transform transition-transform duration-300 ease-in-out z-40 backdrop-blur-lg ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="pt-20 px-4">
-          <h2 className="text-2xl font-bold mb-8">Quant Dashboard</h2>
+          <h2 className="text-2xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">Quant Dashboard</h2>
 
           <nav className="space-y-2">
             {menuItems.map((item) => {
@@ -50,14 +50,14 @@ export default function Sidebar({ currentPage }: SidebarProps) {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
                     isActive
-                      ? 'bg-blue-600 text-white'
-                      : 'hover:bg-gray-800 text-gray-300'
+                      ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg'
+                      : 'hover:bg-gray-800/50 text-gray-300 hover:text-white'
                   }`}
                 >
                   <Icon size={20} />
-                  <span>{item.name}</span>
+                  <span className="font-medium">{item.name}</span>
                 </Link>
               );
             })}
